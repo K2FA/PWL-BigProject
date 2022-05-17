@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->float('price');
             $table->string('picture')->default('picture.png');
-            $table->longText('desc')->nullable();
+            $table->longText('descriptions')->nullable();
             $table->timestamps();
         });
     }
