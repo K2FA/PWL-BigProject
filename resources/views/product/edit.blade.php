@@ -12,7 +12,7 @@
         <div class="section-body">
             <h2 class="section-title">Edit Product</h2>
             <div class="card">
-                <form action="{{ route('user.update', $product) }}" method="POST">
+                <form action="{{ route('product.update', $product) }}" method="post" enctype="multipart/form-data">
                     <div class="card-header">
                         <h4>Validasi Edit Data Product</h4>
                     </div>
@@ -40,9 +40,12 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="file" class="custom-file-input @error('picture') is-invalid @enderror" id="costumFile" name="picture">
-                            <label for="picture" class="custom-file-label">Choose File</label>
-                            @error('password')
+                            <label for="picture">Image</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input " id="customFile" name="picture">
+                                <label for="customFile" class="custom-file-label">Choose File</label>
+                            </div>
+                            @error('picture')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>

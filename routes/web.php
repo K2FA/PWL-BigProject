@@ -3,6 +3,7 @@
 use App\Http\Controllers\DemoController;
 use App\Http\Controllers\Menu\MenuGroupController;
 use App\Http\Controllers\Menu\MenuItemController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleAndPermission\AssignPermissionController;
 use App\Http\Controllers\RoleAndPermission\AssignUserToRoleController;
 use App\Http\Controllers\RoleAndPermission\ExportPermissionController;
@@ -71,4 +72,11 @@ Route::group(['middleware' => ['auth','verified']], function () {
         Route::get('assing-user/{user}/edit', [AssignUserToRoleController::class, 'edit'])->name('assign.user.edit');
         Route::put('assign-user/{user}', [AssignUserToRoleController::class, 'update'])->name('assign.user.update');
     });
+});
+
+// Product
+Route::prefix('product-management') -> group(function(){
+    Route::resource('product', ProductController::class);
+    Route::post('import', [ProductController::class, 'import'])->name('product.import');
+    Route::get('export', [ProductController::class, 'export'])->name('product.export');
 });

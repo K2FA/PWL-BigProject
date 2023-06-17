@@ -19,7 +19,7 @@
                     <h4>Validasi Tambah Data</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('product.store') }}" method="post">
+                    <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
                             <label for="name">Product Name</label>
@@ -42,13 +42,16 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <input type="file" class="custom-file-input @error('picture') is-invalid @enderror" id="costumFile" name="picture">
-                            <label for="picture" class="custom-file-label">Choose File</label>
-                            @error('password')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
+                            <label for="picture">Image</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input " id="customFile" name="picture">
+                                <label for="customFile" class="custom-file-label">Choose File</label>
+                            </div>
+                                @error('picture')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                         </div>
                         <div class="form-group">
                             <label for="descriptions">Description</label>

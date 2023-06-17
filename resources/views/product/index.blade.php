@@ -41,7 +41,7 @@
                         <div class="card-body">
                             <div class="show-import" style="display: none">
                                 <div class="custom-file">
-                                    <form action="{{ route('product.import') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('product.import') }}" method="POST" enctype="multipart/form-data">
                                         {{ csrf_field() }}
                                         <label class="custom-file-label" for="file-upload">Choose File</label>
                                         <input type="file" id="file-upload" class="custom-file-input" name="import_file">
@@ -58,7 +58,7 @@
                                         <div class="form-group col-md-4">
                                             <label for="role">Product</label>
                                             <input type="text" name="name" class="form-control" id="name"
-                                                placeholder="product Name">
+                                                placeholder="Product Name">
                                         </div>
                                     </div>
                                     <div class="text-right">
@@ -71,9 +71,10 @@
                                 <table class="table table-bordered table-md">
                                     <tbody>
                                         <tr>
-                                            <th>#</th>
+                                            <th>id</th>
                                             <th>Name</th>
-                                            <th>Email</th>
+                                            <th>Image</th>
+                                            <th>Price</th>
                                             <th>Created At</th>
                                             <th class="text-right">Action</th>
                                         </tr>
@@ -81,7 +82,7 @@
                                             <tr>
                                                 <td>{{ ($products->currentPage() - 1) * $products->perPage() + $key + 1 }}</td>
                                                 <td>{{ $product->name }}</td>
-                                                <td><img src="{{assets('assets/img/products/'.$product->picture)}}" alt="" style="height: 3rem;" class="rounded mx-2">
+                                                <td><img src="{{asset('assets/img/products/'.$product->picture)}}" alt="" style="height: 3rem;" class="rounded mx-2">
                                                 {{$product->name}}</td>
                                                 <td>{{ 'Rp'.$product->price}}</td>
                                                 <td>{{ $product->created_at}}</td>
@@ -106,7 +107,7 @@
                                     </tbody>
                                 </table>
                                 <div class="d-flex justify-content-center">
-                                    {{ $users->withQueryString()->links() }}
+                                    {{ $products->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>
